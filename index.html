@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" manifest="pwa.manifest">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">	
+    <title>Cálculo Estrutural</title>
+
+	<link rel="manifest" href="app.manifest">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">        
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <h1>Cálculo Estrutural</h1>        
+                </div>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="alert alert-info .alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p>Esta aplicação realiza o cálculo de uma <strong>viga bi apoiada</strong> utilizando o <strong>método de Yopanan.</strong></p>                    
+                </div>
+            </div>
+        </div>
+		<div class="row" id="data">
+			<div class="col-md-10 col-md-offset-1">
+				<form method="POST" id="form-viga" action="#">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								
+								<div class="input-group input-group-lg">
+									<span class="input-group-addon"><b>Carga (q):</b></span>
+									<input id="carga" name="carga" type="number" step="0.01" class="form-control" placeholder="1000.0" required>
+									<span class="input-group-addon">kgf/m</span>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                    <div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="input-group input-group-lg">
+									<span class="input-group-addon"><b>Base (b):</b></span>
+									<input id="base" name="base" type="number" step="0.01" class="form-control" placeholder="20.0" required>
+									<span class="input-group-addon">cm</span>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                    <div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="input-group input-group-lg">
+									<span class="input-group-addon"><b>Altura (h):</b></span>
+									<input id="altura" name="altura" type="number" step="0.01" class="form-control" placeholder="20.0" required>
+									<span class="input-group-addon">cm</span>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                    <div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="input-group input-group-lg">
+									<span class="input-group-addon"><b>Comprimento (l):</b></span>
+									<input id="vao" name="vao" type="number" step="0.01" class="form-control" placeholder="5.0" required>
+									<span class="input-group-addon">m</span>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                    <div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="input-group input-group-lg">
+									<span class="input-group-addon"><b>Concreto:</b></span>
+									<select id="concreto" type="text" name="concreto" class="form-control" required>
+										<option value="">Selecione</option>
+										<option value="20">C20</option>
+										<option value="25">C25</option>
+										<option value="30">C30</option>
+										<option value="35">C35</option>
+										<option value="40">C40</option>
+										<option value="45">C45</option>
+										<option value="50">C50</option>
+									</select>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                    <div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="input-group input-group-lg">
+									<span class="input-group-addon"><b>Aço:</b></span>
+									<select id="aco" type="text" name="aco" class="form-control" required>
+										<option value="">Selecione</option>
+										<option value="250">CA-25</option>
+										<option value="500">CA-50</option>
+										<option value="600">CA-60</option>
+									</select>
+								</div>
+							</div>
+						</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 text-center">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-lg btn-block btn-primary"><span class="glyphicon glyphicon-cog"></span> Calcular</button>
+                            </div>
+                        </div>
+					</div>
+				</form>
+			</div>
+        </div>
+        <div class="row" id="result">
+            <div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-4">
+						<ul class="list-group">
+							<li id="resultCarga" class="list-group-item"><strong>Carga Total</strong>:</li>
+							<li id="resultEsforco" class="list-group-item"><strong>Esforço cortante:</strong></li>
+							<li id="resultFletor" class="list-group-item"><strong>Momento máx. fletor:</strong></li>
+							<li id="resultCLimite" class="list-group-item"><strong>Valor Limite de C:</strong></li>
+							<li id="resultCCalc" class="list-group-item"><strong>Valor Calculado de C:</strong></li>
+							<li id="resultCCL" class="list-group-item"><strong>Resultado C&CL</li>
+							<li id="resultAS" class="list-group-item"><strong>Área de aço:</strong></li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<ul class="list-group">
+							<li id="bit-6" class="list-group-item">6.3 mm</li>
+							<li id="bit-8" class="list-group-item">8.0 mm</li>
+							<li id="bit-10" class="list-group-item">10.0 mm</li>
+							<li id="bit-12" class="list-group-item">12.5 mm</li>
+							<li id="bit-16" class="list-group-item">16.0 mm</li>
+							<li id="bit-20" class="list-group-item">20.0 mm</li>
+							<li id="bit-25" class="list-group-item">25.0 mm</li>
+							<li id="bit-32" class="list-group-item">32.0 mm</li>
+							<li id="bit-40" class="list-group-item">50.0 mm</li>
+						</ul>
+					</div>
+				</div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+						<div class="form-group">
+							<button id="reset" class="btn btn-lg btn-block btn-info"><b>Novo Cálculo</b></button>
+						</div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	<footer>
+		<small>Desenvolvido por <a href="https://viniciusbrito.com">Vinícius Brito</a></small>
+	</footer>
+	<script src="js/sw/register.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="js/calcula.js"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+		ga('create', 'UA-91772078-1', 'auto');
+		ga('send', 'pageview');
+  
+	  </script>
+</body>
+</html>

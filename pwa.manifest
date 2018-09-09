@@ -1,0 +1,10 @@
+CACHE MANIFEST
+
+#v1.1
+
+CACHE:
+css/style.css
+js/calcula.js
+
+NETWORK:
+*
