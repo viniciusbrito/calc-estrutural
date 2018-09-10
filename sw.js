@@ -1,8 +1,8 @@
-let CACHE_NAME = "version-2"
-let CACHE_LIB = 'libs-2'
+let CACHE_NAME = "version-3"
+let CACHE_LIB = 'libs-3'
 
 let files = [
-    '/',
+    './',
     'js/calcula.js',
     'css/style.css'
 ]
