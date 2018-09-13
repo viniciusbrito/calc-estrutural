@@ -1,19 +1,21 @@
-let CACHE_NAME = "version-6"
-let CACHE_LIB = 'libs-3'
+let CACHE_NAME = "version-2.0"
+let CACHE_LIB = 'libs-2.0'
 
 let files = [
     './',
-    'js/calcula.js',
-    'css/style.css'
+    'assets/js/bootstrap.bundle.min.js',
+    'assets/js/calcula.js',
+    'assets/css/bootstrap.min.css',
+    'assets/css/all.min.css',
+    'assets/css/style.css',
+    'assets/img/favicon.ico',
+    'assets/webfonts/fa-solid-900.woff2',
+    'assets/webfonts/fa-solid-900.woff',
+    'assets/webfonts/fa-solid-900.ttf',
 ]
 
 let libs = [
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
-    'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf',
+    'https://code.jquery.com/jquery-3.3.1.slim.min.js',
 ]
 
 self.addEventListener('install', () => {

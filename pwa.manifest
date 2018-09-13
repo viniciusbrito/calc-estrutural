@@ -1,10 +1,17 @@
 CACHE MANIFEST
 
-#v1.2
+#v2.0
 
 CACHE:
-css/style.css
-js/calcula.js
+assets/js/bootstrap.bundle.min.js,
+assets/js/calcula.js,
+assets/css/bootstrap.min.css,
+assets/css/all.min.css,
+assets/css/style.css,
+assets/img/favicon.ico',
+assets/webfonts/fa-solid-900.woff2,
+assets/webfonts/fa-solid-900.woff,
+assets/webfonts/fa-solid-900.ttf,
 
 NETWORK:
 *

@@ -72,11 +72,11 @@
         document.querySelector('#resultCCalc').innerHTML = `<strong>Valor Calculado de C:</strong> ${c.toFixed(2)}`;
         console.log(`Valor de C: ${c.toFixed(2)}`);
         if (c > c_limite) {
-            document.querySelector('#resultCCL').innerHTML = '<strong>Verficação de Dimensão:</strong> <span class="label label-danger">Falhou</span>';
+            document.querySelector('#resultCCL').innerHTML = '<strong>Verficação de Dimensão:</strong> <span class="badge badge-danger">Falhou</span>';
             console.log("Verficação de dimensão falhou! C > C_Limite");
             return false;
         }
-        document.querySelector('#resultCCL').innerHTML = '<strong>Verficação de Dimensão:</strong> <span class="label label-success">OK</span>';
+        document.querySelector('#resultCCL').innerHTML = '<strong>Verficação de Dimensão:</strong> <span class="badge badge-success">OK</span>';
         console.log("Verficação de dimensão OK! C < C_Limite");
 
         /* Fourth Step */
@@ -108,7 +108,7 @@
 
     function showElement(e) {
         document.getElementById(e).style.display = 'block';
-        document.getElementById(e).scrollIntoView();
+        document.getElementById(e).scrollIntoView(true);
     }
     
     function hideElement(e) {
