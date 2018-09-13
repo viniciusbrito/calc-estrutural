@@ -1,4 +1,4 @@
-let CACHE_NAME = "version-2.0"
+let CACHE_NAME = "version-2.0.1"
 let CACHE_LIB = 'libs-2.0'
 
 let files = [
